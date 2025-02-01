@@ -132,13 +132,11 @@ public class CameraController : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, _upgradabledLayerMask))
+        Debug.DrawLine(ray.origin, ray.origin + ray.direction * 100.0f, Color.red, 0.5f);
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, _upgradabledLayerMask))
         {
-            // Get the upgrade script
-            // if (hit.collider.CompareTag("Upgra"))
-            // {
-            //     Debug.Log("Selected: " + hit.collider.name);
-            // }
+            // Get the upgrade script from the object that was clicked
+            hit.collider.GetComponent<UpgradeObjects>().ShowUpgradePanel();
         }
     }
 }
