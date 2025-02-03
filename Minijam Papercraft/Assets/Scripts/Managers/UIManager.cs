@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
-    [SerializeField] private TMP_Text _moneyRateText;
+    [SerializeField] private TMP_Text _moneyAmmountText;
 
     private void Awake()
     {
@@ -24,6 +24,6 @@ public class UIManager : MonoBehaviour
 
     public void UpdateMoneyText(int money)
     {
-        _moneyRateText.text = "Bill printing rate: $ " + money.AbreviateMoney() + "/s";
+        _moneyAmmountText.text = "$ " + money.AbreviateMoney();
     }
 }

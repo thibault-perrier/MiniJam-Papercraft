@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UpgradeObjects : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class UpgradeObjects : MonoBehaviour
 
     [SerializeField] private GameObject _upgradePanel;
     [SerializeField] private TMP_Text _upgradeLevelText;
-    [SerializeField] private TMP_Text _upgradeLevelButton;
+    [SerializeField] private Button _upgradeLevelButton;
 
     [SerializeField] private TMP_Text _upgradeCostText;
 
@@ -20,7 +21,7 @@ public class UpgradeObjects : MonoBehaviour
     {
         _upgradeLevelText.text = "Level " + (CurrentLevel + 1);
         _upgradeCostText.text = UpgradeCost.AbreviateMoney();
-        _upgradeLevelButton.enabled = PlayerManager.Instance.Money >= UpgradeCost;
+        _upgradeLevelButton.interactable = PlayerManager.Instance.Money >= UpgradeCost;
     }
 
     public virtual void ShowUpgradePanel()
@@ -41,5 +42,6 @@ public class UpgradeObjects : MonoBehaviour
 
         PlayerManager.Instance.AddMoney(-UpgradeCost);
         CurrentLevel++;
+        UpdateUpgradeTexts();
     }
 }
